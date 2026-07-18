@@ -3,6 +3,7 @@ import { extractDetailpage } from '../extractor/extractDetailpage.js';
 import { axiosInstance } from '../services/axiosInstance.js';
 import { validationError } from '../utils/errors.js';
 import { DetailAnime } from '../types/anime.js';
+
 const detailpageController = async (c: Context): Promise<DetailAnime> => {
   const id = c.req.param('id');
 

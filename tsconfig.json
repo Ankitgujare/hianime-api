@@ -5,9 +5,9 @@
       "DOM",
       "DOM.Iterable"
     ],
-    "module": "esnext",
-    "target": "esnext",
-    "moduleResolution": "bundler",
+    "module": "NodeNext",
+    "target": "ES2022",
+    "moduleResolution": "NodeNext",
     "moduleDetection": "force",
     "strict": true,
     "downlevelIteration": true,
@@ -20,7 +20,9 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": false,
-    "outDir": "./src/assets/js",
-    "esModuleInterop": true
-  }
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "rootDir": "src"
+  },
+  "include": ["src/**/*", "index.ts", "api/index.ts"]
 }

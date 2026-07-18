@@ -1,8 +1,8 @@
 import { Context } from 'hono';
-import config from '../config/config';
-import { validationError } from '../utils/errors';
-import { extractEpisodes, Episode } from '../extractor/extractEpisodes';
-import { axiosInstance } from '../services/axiosInstance';
+import config from '../config/config.js';
+import { validationError } from '../utils/errors.js';
+import { extractEpisodes, Episode } from '../extractor/extractEpisodes.js';
+import { axiosInstance } from '../services/axiosInstance.js';
 
 const episodesController = async (c: Context): Promise<Episode[]> => {
   const id = c.req.param('id');
