@@ -25,7 +25,7 @@ app.use(
     allowHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
     exposeHeaders: ['Content-Length', 'X-Request-Id'],
     maxAge: 600,
-    credentials: true,
+    credentials: false,
   })
 );
 
