@@ -1,5 +1,7 @@
-import { Hono } from 'hono';
-import { handle } from 'hono/vercel';
+import hiAnimeRoutes from '../src/routes/routes.js';
+import config from '../src/config/config.js';
+import { AppError } from '../src/utils/errors.js';
+import { fail } from '../src/utils/response.js';
 
 const app = new Hono();
 
