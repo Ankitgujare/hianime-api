@@ -1,17 +1,16 @@
 import { Hono } from 'hono';
-import { handle } from 'hono/vercel';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
 
-import hiAnimeRoutes from '../src/routes/routes.js';
-import config from '../src/config/config.js';
-import { AppError } from '../src/utils/errors.js';
-import { fail } from '../src/utils/response.js';
+import hiAnimeRoutes from './routes/routes.js';
+import config from './config/config.js';
+import { AppError } from './utils/errors.js';
+import { fail } from './utils/response.js';
+
 const app = new Hono();
 
-// CORS Configuration
 const origins = config.origin.includes(',')
-  ? config.origin.split(',').map(o => o.trim())
+  ? config.origin.split(',').map((o) => o.trim())
   : config.origin === '*'
     ? '*'
     : [config.origin];
@@ -28,12 +27,10 @@ app.use(
   })
 );
 
-// Logging
 if (!config.isProduction || config.enableLogging) {
   app.use('/api/v2/*', logger());
 }
 
-// Health Check
 app.get('/ping', (c) => {
   return c.json({
     status: 'ok',
@@ -42,16 +39,15 @@ app.get('/ping', (c) => {
   });
 });
 
-// Routes
 app.route('/api/v2', hiAnimeRoutes);
 
-// Error Handling
 app.onError((err, c) => {
   if (err instanceof AppError) {
     return fail(c, err.message, err.statusCode, err.details);
   }
 
   console.error('Vercel Unexpected Error:', err.message);
+
   return fail(c, 'Internal server error', 500);
 });
 
@@ -59,4 +55,4 @@ app.notFound((c) => {
   return fail(c, 'Route not found', 404);
 });
 
-export default handle(app);
+export default app;
