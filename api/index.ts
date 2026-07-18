@@ -1,3 +1,8 @@
+import { Hono } from 'hono';
+import { handle } from 'hono/vercel';
+import { cors } from 'hono/cors';
+import { logger } from 'hono/logger';
+
 import hiAnimeRoutes from '../src/routes/routes.js';
 import config from '../src/config/config.js';
 import { AppError } from '../src/utils/errors.js';
